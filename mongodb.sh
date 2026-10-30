@@ -23,4 +23,4 @@ app_restart
 # systemctl restart mongod &>> "$LOG_FILE"
 # VALIDATE "$?" "Restarted mongodb service"
 
-Print_total_time
+print_total_time
