@@ -4,9 +4,9 @@ source ./common.sh
 app_name="catalogue"
 
 Check_root
-nodejs_setup
 app_setup
-Systemd_setup
+nodejs_setup
+systemd_setup
 
 cp "$SCRIPT_DIR/mongo.repo"  /etc/yum.repos.d/mongo.repo &>> "$LOG_FILE"
 VALIDATE "$?" "copying mongo repo file"
