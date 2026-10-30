@@ -12,6 +12,7 @@ B="\e[34m"
 START_TIME="$(date +%s)"
 SCRIPT_DIR="$PWD"
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
+mkdir -p "$LOG_FOLDER"     # Create log directory
 
 Check_root() {
 if [ "$USER_ID" -ne 0 ]; then
@@ -19,8 +20,6 @@ if [ "$USER_ID" -ne 0 ]; then
     exit 1
 fi
 }
-
-mkdir -p "$LOG_FOLDER"     # Create log directory
 
 VALIDATE() {
     if [ "$1" -ne 0 ]; then
