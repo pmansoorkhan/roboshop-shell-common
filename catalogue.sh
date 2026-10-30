@@ -24,4 +24,4 @@ else
 fi
 
 app_restart
-Print_total_time
+print_total_time
