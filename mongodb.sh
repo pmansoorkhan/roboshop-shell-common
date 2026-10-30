@@ -1,7 +1,7 @@
 #!/bin/bash
 
 source ./common.sh
-
+app_name=mongod
 Check_root
 
 cp "$SCRIPT_DIR/mongo.repo"  /etc/yum.repos.d/mongo.repo 
@@ -19,7 +19,8 @@ VALIDATE "$?" "Starting mongodb service"
 sed -i "s/127.0.0.1/0.0.0.0/g" /etc/mongod.conf
 VALIDATE "$?" "Updating mongodb config file" 
  
-systemctl restart mongod &>> "$LOG_FILE"
-VALIDATE "$?" "Restarted mongodb service"
+app_restart
+# systemctl restart mongod &>> "$LOG_FILE"
+# VALIDATE "$?" "Restarted mongodb service"
 
 Print_total_time
