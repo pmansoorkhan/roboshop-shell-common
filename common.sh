@@ -24,10 +24,10 @@ mkdir -p "$LOG_FOLDER"     # Create log directory
 
 VALIDATE() {
     if [ "$1" -ne 0 ]; then
-        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 .... is  ${R} failed ${N}" | tee -a "$LOG_FILE"
+        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 ....${R} failed ${N}" | tee -a "$LOG_FILE"
         exit 1
     else
-        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 ..... is  ${G} successful ${N}" | tee -a "$LOG_FILE"
+        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 .....${G} successful ${N}" | tee -a "$LOG_FILE"
     fi
 }
 
