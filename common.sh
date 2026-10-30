@@ -1,5 +1,4 @@
 #!/bin/bash
-
 USER_ID=$(id -u)
 LOG_FOLDER="/var/log/roboshop-shell-common"
 SCRIPT_NAME=$(basename "$0")
@@ -11,13 +10,14 @@ N="\e[0m"
 B="\e[34m"
 START_TIME="$(date +%s)"
 SCRIPT_DIR="$PWD"
+MONGODB_HOST="mongodb.shannu.online"
 
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 mkdir -p "$LOG_FOLDER"     # Create log directory
 
 Check_root() {
 if [ "$USER_ID" -ne 0 ]; then
-    echo -e "${R} Please run the script as root user ${N}"
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${R} Please run the script as root user ${N}"
     exit 1
 fi
 }
@@ -55,7 +55,7 @@ app_setup(){
             useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>> "$LOG_FILE"
             VALIDATE "$?" "Creating system user"
         else
-            echo -e "${Y}roboshop user already exists${N}....${B}Skipping user creation${N}" | tee -a "$LOG_FILE"
+            echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${Y}roboshop user already exists${N}....${B}Skipping user creation${N}" | tee -a "$LOG_FILE"
         fi
 
     mkdir -p /app  &>> "$LOG_FILE"
@@ -85,6 +85,11 @@ systemd_setup(){
     systemctl start $app_name &>> "$LOG_FILE"
     VALIDATE "$?" "Enabling & Starting $app_name service"
 
+}
+
+app_restart(){
+    systemctl restart $app_name  &>> "$LOG_FILE"
+    VALIDATE "$?" "Restarted $app_name service"
 }
 
 Print_total_time(){
