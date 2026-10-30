@@ -10,7 +10,7 @@ Y="\e[33m"
 N="\e[0m"
 B="\e[34m"
 START_TIME="$(date +%s)"
-SCRIPT_DIR=$PWD
+SCRIPT_DIR="$PWD"
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 
 Check_root() {
