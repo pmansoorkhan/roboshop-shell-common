@@ -10,12 +10,12 @@ Y="\e[33m"
 N="\e[0m"
 B="\e[34m"
 START_TIME="$(date +%s)"
-
-echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at: $(date)"  | tee -a "$LOG_FILE"
+SCRIPT_DIR=$PWD
+echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 
 Check_root() {
 if [ "$USER_ID" -ne 0 ]; then
-    echo -e "${R}Please run the script as root user${N}"
+    echo -e "${R} Please run the script as root user ${N}"
     exit 1
 fi
 }
@@ -27,7 +27,7 @@ VALIDATE() {
         echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 .... is  ${R} failed ${N}" | tee -a "$LOG_FILE"
         exit 1
     else
-        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 ..... is  ${G} successful$ {N}" | tee -a "$LOG_FILE"
+        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | $2 ..... is  ${G} successful ${N}" | tee -a "$LOG_FILE"
     fi
 }
 
