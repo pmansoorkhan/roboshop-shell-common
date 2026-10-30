@@ -4,7 +4,7 @@ source ./common.sh
 
 check_root()
 
-cp "$SCRIPT_DIR/mongo.repo" /etc/yum.repos.d/mongo.repo 
+cp "SCRIPT_DIR/mongo.repo" /etc/yum.repos.d/mongo.repo 
 VALIDATE "$?" "Copying mongo repo file"
 
 dnf install mongodb-org -y  &>> "$LOG_FILE"   
