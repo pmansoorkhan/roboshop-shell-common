@@ -2,7 +2,7 @@
 
 source ./common.sh
 
-check_root
+Check_root
 
 cp "$SCRIPT_DIR/mongo.repo"  /etc/yum.repos.d/mongo.repo 
 VALIDATE "$?" "Copying mongo repo file"
@@ -22,4 +22,4 @@ VALIDATE "$?" "Updating mongodb config file"
 systemctl restart mongod &>> "$LOG_FILE"
 VALIDATE "$?" "Restarted mongodb service"
 
-print_total_time
+Print_total_time
