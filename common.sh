@@ -50,6 +50,13 @@ nodejs_setup(){
 }
 
 app_setup(){
+    id roboshop &>> "$LOG_FILE"
+        if [ "$?" -ne 0 ]; then
+            useradd --system --home /app --shell /sbin/nologin --comment "roboshop system user" roboshop  &>> "$LOG_FILE"
+            VALIDATE "$?" "Creating system user"
+        else
+            echo -e "${Y}roboshop user already exists${N}....${B}Skipping user creation${N}" | tee -a "$LOG_FILE"
+        fi
 
     mkdir -p /app  &>> "$LOG_FILE"
     VALIDATE "$?" "Creating app directory"
@@ -64,7 +71,20 @@ app_setup(){
     VALIDATE "$?" "Removing existing content from app directory"
 
     unzip /tmp/$app_name.zip  &>> "$LOG_FILE"
-    VALIDATE "$?" "Extracting catalogue zip file"
+    VALIDATE "$?" "Extracting $app_name zip file"
+}
+
+systemd_setup(){
+    cp "$SCRIPT_DIR/$app_name.service"  /etc/systemd/system/$app_name.service &>> "$LOG_FILE"
+    VALIDATE "$?" "copying $app_name service file"
+
+    systemctl daemon-reload &>> "$LOG_FILE"
+    VALIDATE "$?" "Reloading systemd daemon service"
+
+    systemctl enable $app_name  &>> "$LOG_FILE"
+    systemctl start $app_name &>> "$LOG_FILE"
+    VALIDATE "$?" "Enabling & Starting $app_name service"
+
 }
 
 Print_total_time(){
