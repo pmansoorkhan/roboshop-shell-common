@@ -14,7 +14,6 @@ MONGODB_HOST="mongodb.shannu.online"
 
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 mkdir -p "$LOG_FOLDER"     # Create log directory
-
 Check_root() {
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${R} Please run the script as root user ${N}"
@@ -92,7 +91,7 @@ app_restart(){
     VALIDATE "$?" "Restarted $app_name service"
 }
 
-Print_total_time(){
+print_total_time(){
 END_TIME="$(date +%s)"
 TOTAL_TIME=$(( "$END_TIME" - "$START_TIME" ))
 echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | Script executed in :"${G} $TOTAL_TIME" seconds ${N}"  | tee -a "$LOG_FILE"
