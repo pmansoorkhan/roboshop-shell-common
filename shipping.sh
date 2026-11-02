@@ -3,15 +3,13 @@
 source ./common.sh
 app_name="shipping"
 
-check_root
+Check_root
 app_setup
 java_setup
 systemd_setup
 
-
 dnf install mysql -y  &>> "$LOG_FILE" 
 VALIDATE "$?" "Installing MYSQL"
-
 
 mysql -h $MYSQL_HOST -uroot -pRoboShop@1 -e 'use cities'
 if [ "$?" -ne 0 ]; then
