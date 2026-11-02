@@ -67,14 +67,11 @@ java_setup(){
 }
 
 python_setup(){
-
     dnf install python3 gcc python3-devel -y  &>> "$LOG_FILE"
     VALIDATE "$?" "Installing python services"
 
     pip3 install -r requirements.txt  &>> "$LOG_FILE" 
     VALIDATE "$?" "Installing python dependencies"
-
-
 }
 
 app_setup(){
@@ -112,12 +109,11 @@ systemd_setup(){
     systemctl enable $app_name  &>> "$LOG_FILE"
     systemctl start $app_name &>> "$LOG_FILE"
     VALIDATE "$?" "Enabling & Starting $app_name service"
-
 }
 
 app_restart(){
-    systemctl restart $app_name  &>> "$LOG_FILE"
-    VALIDATE "$?" "Restarted $app_name service"
+ systemctl restart $app_name  &>> "$LOG_FILE"
+ VALIDATE "$?" "Restarted $app_name service"
 }
 
 print_total_time(){
