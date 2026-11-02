@@ -49,6 +49,22 @@ nodejs_setup(){
     VALIDATE "$?" "Installing nodejs dependencies"
 }
 
+java_setup(){
+    dnf install maven -y  &>> "$LOG_FILE"
+    VALIDATE "$?" "INstalling Maven package"
+
+
+    cd /app 
+    VALIDATE "$?" "Move to app directory"
+
+    mvn clean package &>> "$LOG_FILE"
+    VALIDATE "$?" "Installing MAVEN dependencies"
+
+    mv target/shipping-1.0.jar shipping.jar  &>> "$LOG_FILE" 
+    VALIDATE "$?" "Renaming file name"
+
+}
+
 app_setup(){
     id roboshop &>> "$LOG_FILE"
         if [ "$?" -ne 0 ]; then
@@ -93,7 +109,7 @@ app_restart(){
 }
 
 print_total_time(){
-END_TIME="$(date +%s)"
-TOTAL_TIME=$(( "$END_TIME" - "$START_TIME" ))
-echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | Script executed in :"${G} $TOTAL_TIME" seconds ${N}"  | tee -a "$LOG_FILE"
+    END_TIME="$(date +%s)"
+    TOTAL_TIME=$(( "$END_TIME" - "$START_TIME" ))
+    echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | Script executed in :"${G} $TOTAL_TIME" seconds ${N}"  | tee -a "$LOG_FILE"
 }
