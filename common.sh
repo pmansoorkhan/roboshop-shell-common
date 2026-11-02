@@ -10,6 +10,7 @@ N="\e[0m"
 B="\e[34m"
 SCRIPT_DIR="$PWD"
 MONGODB_HOST="mongodb.shannu.online"
+MYSQL_HOST="mysql.shannu.online"
 START_TIME="$(date +%s)"
 mkdir -p "$LOG_FOLDER"     # Create log directory
 
