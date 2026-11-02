@@ -33,7 +33,6 @@ VALIDATE() {
 }
 
 nodejs_setup(){
-
     dnf module list nodejs &>> "$LOG_FILE"
     VALIDATE "$?" "checking NODEJS module list"
 
@@ -54,7 +53,6 @@ java_setup(){
     dnf install maven -y  &>> "$LOG_FILE"
     VALIDATE "$?" "INstalling Maven package"
 
-
     cd /app 
     VALIDATE "$?" "Move to app directory"
 
@@ -63,7 +61,6 @@ java_setup(){
 
     mv target/shipping-1.0.jar shipping.jar  &>> "$LOG_FILE" 
     VALIDATE "$?" "Renaming file name"
-
 }
 
 python_setup(){
