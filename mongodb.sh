@@ -4,6 +4,7 @@ source ./common.sh
 app_name=mongod
 Check_root
 
+
 cp "$SCRIPT_DIR/mongo.repo"  /etc/yum.repos.d/mongo.repo 
 VALIDATE "$?" "Copying mongo repo file"
 
