@@ -2,6 +2,7 @@
 source ./common.sh
 app_name="user"
 
+
 Check_root
 app_setup
 nodejs_setup
