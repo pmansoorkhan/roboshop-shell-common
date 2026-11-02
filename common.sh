@@ -9,11 +9,12 @@ Y="\e[33m"
 N="\e[0m"
 B="\e[34m"
 START_TIME="$(date +%s)"
+mkdir -p "$LOG_FOLDER"     # Create log directory
 SCRIPT_DIR="$PWD"
 MONGODB_HOST="mongodb.shannu.online"
 
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
-mkdir -p "$LOG_FOLDER"     # Create log directory
+
 Check_root() {
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${R} Please run the script as root user ${N}"
