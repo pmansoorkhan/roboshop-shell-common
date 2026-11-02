@@ -8,10 +8,10 @@ G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 B="\e[34m"
-START_TIME="$(date +%s)"
-mkdir -p "$LOG_FOLDER"     # Create log directory
 SCRIPT_DIR="$PWD"
 MONGODB_HOST="mongodb.shannu.online"
+START_TIME="$(date +%s)"
+mkdir -p "$LOG_FOLDER"     # Create log directory
 
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 
@@ -62,6 +62,17 @@ java_setup(){
 
     mv target/shipping-1.0.jar shipping.jar  &>> "$LOG_FILE" 
     VALIDATE "$?" "Renaming file name"
+
+}
+
+python_setup(){
+
+    dnf install python3 gcc python3-devel -y  &>> "$LOG_FILE"
+    VALIDATE "$?" "Installing python services"
+
+    pip3 install -r requirements.txt  &>> "$LOG_FILE" 
+    VALIDATE "$?" "Installing python dependencies"
+
 
 }
 
