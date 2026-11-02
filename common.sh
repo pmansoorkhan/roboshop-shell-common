@@ -15,11 +15,12 @@ mkdir -p "$LOG_FOLDER"     # Create log directory
 
 echo "$(date "+%Y-%m-%d %H:%M:%S")  | Script started executing at:$(date)"  | tee -a "$LOG_FILE"
 
-Check_root() {
-if [ "$USER_ID" -ne 0 ]; then
-    echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${R} Please run the script as root user ${N}"
-    exit 1
-fi
+
+Check_root(){
+    if [ "$USER_ID" -ne 0 ]; then
+        echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${R} Please run the script as root user ${N}"
+        exit 1
+    fi
 }
 
 VALIDATE() {
