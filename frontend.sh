@@ -2,7 +2,7 @@
 
 source ./common.sh
 app_name="frontend"
-#app_dir=/usr/share/nginx/html
+app_dir=/usr/share/nginx/html
 
 
 Check_root
