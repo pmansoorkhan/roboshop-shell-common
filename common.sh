@@ -55,13 +55,11 @@ java_setup(){
     VALIDATE "$?" "INstalling Maven package"
 
     cd /app 
-    VALIDATE "$?" "Move to app directory"
-
     mvn clean package &>> "$LOG_FILE"
-    VALIDATE "$?" "Installing MAVEN dependencies"
+    VALIDATE "$?" "Installing and Building $app_name"
 
-    mv target/shipping-1.0.jar shipping.jar  &>> "$LOG_FILE" 
-    VALIDATE "$?" "Renaming file name"
+    mv target/$app_name-1.0.jar $app_name.jar  &>> "$LOG_FILE" 
+    VALIDATE "$?" "Moving and Renaming $app_name"
 }
 
 python_setup(){
