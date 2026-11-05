@@ -39,5 +39,7 @@ VALIDATE $? "Remove default content"
 cp "$SCRIPT_DIR/nginx.conf"  /etc/nginx/nginx.conf  &>> "$LOG_FILE"
 VALIDATE $? "Copying  our nginx conf file"
 
-#app_restart
+systemctl restart nginx &>> "$LOG_FILE"
+VALIDATE $? "Restarted Nginx"
+
 print_total_time
