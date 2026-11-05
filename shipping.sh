@@ -19,7 +19,6 @@ if [ "$?" -ne 0 ]; then
      VALIDATE "$?" "Loading data into MYSQL"
 else 
     echo -e "$(date "+%Y-%m-%d %H:%M:%S")  | ${G} Data is already loaded ${N} .....${Y} Skipping ${N}"
-fi
-    
+fi 
 app_restart
 print_total_time
